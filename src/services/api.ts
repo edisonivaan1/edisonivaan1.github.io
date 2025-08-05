@@ -1,5 +1,5 @@
 import { CompleteLevelData } from '../types';
-import { getApiBaseUrl, checkBackendAvailability } from '../config/environment';
+import { getApiBaseUrl } from '../config/environment';
 import { isOfflineMode, offlineAuthService, offlineProgressService, offlineAchievementService } from './fallbackService';
 
 // Función para obtener la URL base de la API dinámicamente

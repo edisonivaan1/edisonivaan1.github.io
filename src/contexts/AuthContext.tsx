@@ -55,8 +55,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           setToken(savedToken);
           const response = await authService.getCurrentUser();
           
-          if (response.success && response.user) {
-            setUser(response.user);
+          if (response.success && response.data) {
+            setUser(response.data);
           } else {
             // Token inválido, limpiar
             localStorage.removeItem('authToken');
@@ -131,8 +131,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
     try {
       const response = await authService.getCurrentUser();
-      if (response.success && response.user) {
-        setUser(response.user);
+      if (response.success && response.data) {
+        setUser(response.data);
       }
     } catch (error) {
       console.error('Error refreshing user:', error);

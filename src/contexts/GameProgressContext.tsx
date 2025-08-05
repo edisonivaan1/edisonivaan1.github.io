@@ -98,7 +98,7 @@ export const GameProgressProvider: React.FC<{ children: ReactNode }> = ({ childr
         setLevels(levels || []);
         setUnlockedDifficulties(unlockedDifficulties || ['easy']);
       } else {
-        console.warn('Failed to load progress:', response.message);
+        console.warn('Failed to load progress: No message available');
         setLevels([]);
         setUnlockedDifficulties(['easy']);
       }

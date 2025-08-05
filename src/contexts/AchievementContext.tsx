@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
-import { useGameProgress } from './GameProgressContext';
-import { progressService, achievementService } from '../services/api';
-import { grammarTopics } from '../data/grammarTopics';
+// import { useGameProgress } from './GameProgressContext';
+import { achievementService } from '../services/api';
+// import { grammarTopics } from '../data/grammarTopics';
 
 export interface Achievement {
   id: string;
@@ -28,7 +28,7 @@ export const AchievementProvider: React.FC<{ children: ReactNode }> = ({ childre
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [pendingNotifications, setPendingNotifications] = useState<Achievement[]>([]);
   const { user } = useAuth();
-  const { isLevelCompleted } = useGameProgress();
+  // const { isLevelCompleted } = useGameProgress();
 
   // Load shown achievements from localStorage
   const getShownAchievements = (): string[] => {
@@ -44,194 +44,194 @@ export const AchievementProvider: React.FC<{ children: ReactNode }> = ({ childre
   };
 
   // Generate all possible achievements
-  const generateAllAchievements = (stats: any): Achievement[] => {
-    return [
-      // Completion achievements
-      {
-        id: 'first_steps',
-        name: 'First Steps',
-        description: 'Complete your first lesson',
-        icon: '🎯',
-        earned: stats.completedLessons >= 1,
-        category: 'completion'
-      },
-      {
-        id: 'getting_started',
-        name: 'Getting Started',
-        description: 'Complete 5 lessons',
-        icon: '🚀',
-        earned: stats.completedLessons >= 5,
-        category: 'completion'
-      },
-      {
-        id: 'grammar_explorer',
-        name: 'Grammar Explorer',
-        description: 'Complete 10 lessons',
-        icon: '🗺️',
-        earned: stats.completedLessons >= 10,
-        category: 'completion'
-      },
-      {
-        id: 'dedicated_learner',
-        name: 'Dedicated Learner',
-        description: 'Complete 15 lessons',
-        icon: '📚',
-        earned: stats.completedLessons >= 15,
-        category: 'completion'
-      },
-      {
-        id: 'course_complete',
-        name: 'Course Master',
-        description: 'Complete all available topics',
-        icon: '🎉',
-        earned: stats.completedTopics >= stats.totalTopics && stats.totalTopics > 0,
-        category: 'completion'
-      },
-      // Performance achievements
-      {
-        id: 'perfectionist',
-        name: 'Perfectionist',
-        description: 'Achieve 100% on any lesson',
-        icon: '⭐',
-        earned: stats.bestScore >= 100,
-        category: 'performance'
-      },
-      {
-        id: 'high_achiever',
-        name: 'High Achiever',
-        description: 'Maintain 85% average score',
-        icon: '🏆',
-        earned: stats.averageScore >= 85,
-        category: 'performance'
-      },
-      {
-        id: 'scholar',
-        name: 'Scholar',
-        description: 'Maintain 90% average score',
-        icon: '🎓',
-        earned: stats.averageScore >= 90,
-        category: 'performance'
-      },
-      // Medal achievements
-      {
-        id: 'easy_master',
-        name: 'Easy Master',
-        description: 'Complete all Easy difficulty topics',
-        icon: '🥉',
-        earned: stats.easyMedal,
-        category: 'medal'
-      },
-      {
-        id: 'medium_master',
-        name: 'Medium Master',
-        description: 'Complete all Medium difficulty topics',
-        icon: '🥈',
-        earned: stats.mediumMedal,
-        category: 'medal'
-      },
-      {
-        id: 'hard_master',
-        name: 'Hard Master',
-        description: 'Complete all Hard difficulty topics',
-        icon: '🥇',
-        earned: stats.hardMedal,
-        category: 'medal'
-      },
-      // Consistency achievements
-      {
-        id: 'persistent',
-        name: 'Persistent',
-        description: 'Make 10 attempts',
-        icon: '💪',
-        earned: stats.totalAttempts >= 10,
-        category: 'consistency'
-      },
-      {
-        id: 'determined',
-        name: 'Determined',
-        description: 'Make 25 attempts',
-        icon: '🔥',
-        earned: stats.totalAttempts >= 25,
-        category: 'consistency'
-      },
-      // Exploration achievements
-      {
-        id: 'help_seeker',
-        name: 'Help Seeker',
-        description: 'Use hints wisely (5+ hints used)',
-        icon: '💡',
-        earned: stats.totalHintsUsed >= 5,
-        category: 'exploration'
-      }
-    ];
-  };
+  // const generateAllAchievements = (stats: any): Achievement[] => {
+  //   return [
+  //     // Completion achievements
+  //     {
+  //       id: 'first_steps',
+  //       name: 'First Steps',
+  //       description: 'Complete your first lesson',
+  //       icon: '🎯',
+  //       earned: stats.completedLessons >= 1,
+  //       category: 'completion'
+  //     },
+  //     {
+  //       id: 'getting_started',
+  //       name: 'Getting Started',
+  //       description: 'Complete 5 lessons',
+  //       icon: '🚀',
+  //       earned: stats.completedLessons >= 5,
+  //       category: 'completion'
+  //     },
+  //     {
+  //       id: 'grammar_explorer',
+  //       name: 'Grammar Explorer',
+  //       description: 'Complete 10 lessons',
+  //       icon: '🗺️',
+  //       earned: stats.completedLessons >= 10,
+  //       category: 'completion'
+  //     },
+  //     {
+  //       id: 'dedicated_learner',
+  //       name: 'Dedicated Learner',
+  //       description: 'Complete 15 lessons',
+  //       icon: '📚',
+  //       earned: stats.completedLessons >= 15,
+  //       category: 'completion'
+  //     },
+  //     {
+  //       id: 'course_complete',
+  //       name: 'Course Master',
+  //       description: 'Complete all available topics',
+  //       icon: '🎉',
+  //       earned: stats.completedTopics >= stats.totalTopics && stats.totalTopics > 0,
+  //       category: 'completion'
+  //     },
+  //     // Performance achievements
+  //     {
+  //       id: 'perfectionist',
+  //       name: 'Perfectionist',
+  //       description: 'Achieve 100% on any lesson',
+  //       icon: '⭐',
+  //       earned: stats.bestScore >= 100,
+  //       category: 'performance'
+  //     },
+  //     {
+  //       id: 'high_achiever',
+  //       name: 'High Achiever',
+  //       description: 'Maintain 85% average score',
+  //       icon: '🏆',
+  //       earned: stats.averageScore >= 85,
+  //       category: 'performance'
+  //     },
+  //     {
+  //       id: 'scholar',
+  //       name: 'Scholar',
+  //       description: 'Maintain 90% average score',
+  //       icon: '🎓',
+  //       earned: stats.averageScore >= 90,
+  //       category: 'performance'
+  //     },
+  //     // Medal achievements
+  //     {
+  //       id: 'easy_master',
+  //       name: 'Easy Master',
+  //       description: 'Complete all Easy difficulty topics',
+  //       icon: '🥉',
+  //       earned: stats.easyMedal,
+  //       category: 'medal'
+  //     },
+  //     {
+  //       id: 'medium_master',
+  //       name: 'Medium Master',
+  //       description: 'Complete all Medium difficulty topics',
+  //       icon: '🥈',
+  //       earned: stats.mediumMedal,
+  //       category: 'medal'
+  //     },
+  //     {
+  //       id: 'hard_master',
+  //       name: 'Hard Master',
+  //       description: 'Complete all Hard difficulty topics',
+  //       icon: '🥇',
+  //       earned: stats.hardMedal,
+  //       category: 'medal'
+  //     },
+  //     // Consistency achievements
+  //     {
+  //       id: 'persistent',
+  //       name: 'Persistent',
+  //       description: 'Make 10 attempts',
+  //       icon: '💪',
+  //       earned: stats.totalAttempts >= 10,
+  //       category: 'consistency'
+  //     },
+  //     {
+  //       id: 'determined',
+  //       name: 'Determined',
+  //       description: 'Make 25 attempts',
+  //       icon: '🔥',
+  //       earned: stats.totalAttempts >= 25,
+  //       category: 'consistency'
+  //     },
+  //     // Exploration achievements
+  //     {
+  //       id: 'help_seeker',
+  //       name: 'Help Seeker',
+  //       description: 'Use hints wisely (5+ hints used)',
+  //       icon: '💡',
+  //       earned: stats.totalHintsUsed >= 5,
+  //       category: 'exploration'
+  //     }
+  //   ];
+  // };
 
   // Calculate current stats for achievement checking
-  const calculateCurrentStats = async () => {
-    try {
-      const [progressResponse, statsResponse] = await Promise.all([
-        progressService.getProgress(),
-        progressService.getStats()
-      ]);
+  // const calculateCurrentStats = async () => {
+  //   try {
+  //     const [progressResponse, statsResponse] = await Promise.all([
+  //       progressService.getProgress(),
+  //       progressService.getStats()
+  //     ]);
 
-      let completedLessons = 0;
-      let completedTopics = 0;
-      const totalTopics = grammarTopics.length;
+  //     let completedLessons = 0;
+  //     let completedTopics = 0;
+  //     const totalTopics = grammarTopics.length;
 
-      // Calculate completed lessons and topics
-      grammarTopics.forEach(topic => {
-        let topicCompleted = false;
-        ['easy', 'medium', 'hard'].forEach(difficulty => {
-          const difficultyKey = difficulty as 'easy' | 'medium' | 'hard';
+  //     // Calculate completed lessons and topics
+  //     grammarTopics.forEach(topic => {
+  //       let topicCompleted = false;
+  //       ['easy', 'medium', 'hard'].forEach(difficulty => {
+  //         const difficultyKey = difficulty as 'easy' | 'medium' | 'hard';
           
-          if (isLevelCompleted(topic.id, difficultyKey)) {
-            completedLessons++;
-            if (!topicCompleted) {
-              topicCompleted = true;
-              completedTopics++;
-            }
-          }
-        });
-      });
+  //         if (isLevelCompleted(topic.id, difficultyKey)) {
+  //           completedLessons++;
+  //           if (!topicCompleted) {
+  //             topicCompleted = true;
+  //             completedTopics++;
+  //           }
+  //         }
+  //       });
+  //     });
 
-      // Check for difficulty medals
-      const topicsByDifficulty = {
-        easy: grammarTopics.filter(topic => topic.difficulty === 'easy'),
-        medium: grammarTopics.filter(topic => topic.difficulty === 'medium'),
-        hard: grammarTopics.filter(topic => topic.difficulty === 'hard')
-      };
+  //     // Check for difficulty medals
+  //     const topicsByDifficulty = {
+  //       easy: grammarTopics.filter(topic => topic.difficulty === 'easy'),
+  //       medium: grammarTopics.filter(topic => topic.difficulty === 'medium'),
+  //       hard: grammarTopics.filter(topic => topic.difficulty === 'hard')
+  //     };
 
-      const easyMedal = topicsByDifficulty.easy.length > 0 && 
-        topicsByDifficulty.easy.every(topic => isLevelCompleted(topic.id, 'easy'));
+  //     const easyMedal = topicsByDifficulty.easy.length > 0 && 
+  //       topicsByDifficulty.easy.every(topic => isLevelCompleted(topic.id, 'easy'));
       
-      const mediumMedal = topicsByDifficulty.medium.length > 0 && 
-        topicsByDifficulty.medium.every(topic => isLevelCompleted(topic.id, 'medium'));
+  //     const mediumMedal = topicsByDifficulty.medium.length > 0 && 
+  //       topicsByDifficulty.medium.every(topic => isLevelCompleted(topic.id, 'medium'));
       
-      const hardMedal = topicsByDifficulty.hard.length > 0 && 
-        topicsByDifficulty.hard.every(topic => isLevelCompleted(topic.id, 'hard'));
+  //     const hardMedal = topicsByDifficulty.hard.length > 0 && 
+  //       topicsByDifficulty.hard.every(topic => isLevelCompleted(topic.id, 'hard'));
 
-      const backendStats = statsResponse?.data?.attemptStats || {};
+  //     const backendStats = statsResponse?.data?.attemptStats || {};
 
-      return {
-        completedLessons,
-        completedTopics,
-        totalTopics,
-        easyMedal,
-        mediumMedal,
-        hardMedal,
-        totalAttempts: backendStats.totalAttempts || 0,
-        averageScore: Math.round(backendStats.avgScore || 0),
-        bestScore: Math.round(backendStats.bestScore || 0),
-        totalHintsUsed: backendStats.totalHintsUsed || 0
-      };
-    } catch (error) {
-      console.error('Error calculating stats for achievements:', error);
-      return null;
-    }
-  };
+  //     return {
+  //       completedLessons,
+  //       completedTopics,
+  //       totalTopics,
+  //       easyMedal,
+  //       mediumMedal,
+  //       hardMedal,
+  //       totalAttempts: backendStats.totalAttempts || 0,
+  //       averageScore: Math.round(backendStats.avgScore || 0),
+  //       bestScore: Math.round(backendStats.bestScore || 0),
+  //       totalHintsUsed: backendStats.totalHintsUsed || 0
+  //     };
+  //   } catch (error) {
+  //     console.error('Error calculating stats for achievements:', error);
+  //     return null;
+  //   }
+  // };
 
   // Check for new achievements using backend
-  const checkForNewAchievements = async (newStats?: any): Promise<Achievement[]> => {
+  const checkForNewAchievements = async (_newStats?: any): Promise<Achievement[]> => {
     try {
       console.log('🔍 Checking for new achievements...');
       
