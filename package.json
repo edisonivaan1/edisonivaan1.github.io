@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://edisonivaan1.github.io/edisonivaan1.github.io",
   "scripts": {
     "dev": "vite",
     "dev:frontend": "vite",
@@ -10,7 +11,7 @@
     "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "start:backend": "cd backend && npm start",
     "build": "tsc -b && vite build",
-    "build:gh-pages": "tsc -b && vite build --base=/edisonivaan1.github.io/",
+    "build:gh-pages": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

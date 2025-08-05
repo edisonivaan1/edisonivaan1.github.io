@@ -32,7 +32,7 @@ function App() {
             <QuestionStatusProvider>
               <AttemptProvider>
                 <AudioProvider>
-                  <Router>
+                  <Router basename={process.env.NODE_ENV === 'production' ? '/edisonivaan1.github.io' : '/'}>
                     <MainLayout>
                       <Routes>
                       {/* Rutas públicas */}
